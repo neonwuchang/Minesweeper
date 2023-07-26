@@ -11,6 +11,9 @@ private:
 	int board[9][9];
 	string cover[9][9];
 	int mines[10][2] = { {0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+
+	// ensures a square is not populated by a mine twice
+	// accepts current index where mine is to be put and checks that if it is already a mine; returns t/f accordingly
 	bool not_dupe(int a, int b)
 	{
 		for (int x = 0; x < 10; x++)
@@ -18,6 +21,8 @@ private:
 				return false;
 		return true;
 	}
+
+	// to display the board at the end of the game
 	void end_board_disp()
 	{
 		cout << "____________________________\n|";
@@ -32,6 +37,8 @@ private:
 		}
 		cout << "\n----------------------------" << endl;
 	}
+
+	// whenever a mine is created, the adjoining squares' value is increased by 1 (if it isn't a mine itself) 
 	void populate_board(int x, int y)
 	{
 		// top rt
@@ -117,6 +124,7 @@ private:
 		if (board[x - 1][y + 1] != 99) board[x - 1][y + 1] += 1;
 		return;
 	}
+
 public:
 	void disp_board();
 	void create_mines();
@@ -152,6 +160,8 @@ void Board::disp_board()
 	}
 	cout << "\n----------------------------" << endl;
 }
+
+//randomly generate mines
 void Board::create_mines()
 {
 	srand(time(NULL));
@@ -172,6 +182,7 @@ void Board::create_mines()
 	}
 	
 }
+
 bool Board::move(int x, int y)
 {
 	if (board[x][y] == 99)
@@ -191,6 +202,7 @@ bool Board::move(int x, int y)
 		else cout << "Already Flipped...Make a different choice!" << endl;
 	}
 }
+
 void Board::flag(int x, int y)
 {
 	if (cover[x][y] == " X")
