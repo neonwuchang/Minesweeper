@@ -6,14 +6,14 @@ int main()
 	Board b;
 	b.disp_board();
 	b.create_mines();
-	int x, y; char c;
+	int x, y; char c = 'O';
 	cout << "Enter coord (x-cord->Enter->y-coord->Enter): " << endl;
 	cin >> x;
 	cin >> y;
 	bool cont = b.move(x, y);
 	while (cont)
 	{
-		cout << "Enter 'F' to mark as flag/ Enter 'O' to flip tile: " << endl;
+		cout << "Enter 'F' to mark as flag (else enter any random char): " << endl;
 		cin >> c;
 		cout << "Enter coord (x-cord->Enter->y-coord->Enter): " << endl;
 		cin >> x;
@@ -25,14 +25,11 @@ int main()
 		}
 		switch (c)
 		{
-		case 'O': case 'o':
-			cont = b.move(x, y);
-			break;
 		case 'F': case 'f':
 			b.flag(x, y);
 			break;
 		default:
-			cout << "Invalid Choice";
+			cont = b.move(x, y);
 			break;
 		}
 	}
