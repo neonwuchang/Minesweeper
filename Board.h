@@ -210,6 +210,11 @@ void Board::flag(int x, int y)
 		cover[x][y] = "Fl";
 		disp_board();
 	}
+	else if (cover[x][y] == "Fl")
+	{
+		cover[x][y] = " X";
+		disp_board();
+	}
 	else
 		cout << "Invalid! Please make a different choice!" << endl;
 }
